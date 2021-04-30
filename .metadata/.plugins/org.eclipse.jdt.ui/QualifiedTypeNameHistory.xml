@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="com.villiansftw.model.Customer"/>
+    <fullyQualifiedTypeName name="com.villiansftw.service.customerService"/>
+    <fullyQualifiedTypeName name="com.villiansftw.service.impl.customerImpl"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="com.villiansftw.dao.customerDAO"/>
+    <fullyQualifiedTypeName name="com.villiansftw.dao.impl.customerDAOImpl"/>
+    <fullyQualifiedTypeName name="com.villiansftw.service.employeeService"/>
+    <fullyQualifiedTypeName name="com.villiansftw.service.impl.employeeImpl"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.Statement"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="com.villiansftw.dao.impl.employeeDAOimpl"/>
+    <fullyQualifiedTypeName name="com.villiansftw.dao.employeeDAO"/>
+    <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
+    <fullyQualifiedTypeName name="com.villiansftw.model.Item"/>
+    <fullyQualifiedTypeName name="java.lang.IllegalAccessException"/>
+    <fullyQualifiedTypeName name="java.lang.IllegalArgumentException"/>
+    <fullyQualifiedTypeName name="java.lang.NullPointerException"/>
+    <fullyQualifiedTypeName name="com.villiansftw.exception.itemException"/>
+    <fullyQualifiedTypeName name="com.villiansftw.exception.businessException"/>
+    <fullyQualifiedTypeName name="javax.lang.model.element.ExecutableElement"/>
+    <fullyQualifiedTypeName name="com.villiansftw.dao.dbutil.postgresConnection"/>
+    <fullyQualifiedTypeName name="com.villiansftw.model.Employee"/>
+    <fullyQualifiedTypeName name="com.villiansftw.dao.GenericDao"/>
+    <fullyQualifiedTypeName name="com.villiansftw.exception.accountException"/>
+    <fullyQualifiedTypeName name="com.AMT.dao.impl.customerDAOImpl"/>
+    <fullyQualifiedTypeName name="com.AMT.dao.customerDAO"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="com.AMT.service.customerService"/>
+    <fullyQualifiedTypeName name="com.AMT.exception.itemException"/>
+    <fullyQualifiedTypeName name="com.AMT.dao.dbutil.postgresConnection"/>
+    <fullyQualifiedTypeName name="java.lang.ClassNotFoundException"/>
+    <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.AMT.model.Offer"/>
+</qualifiedTypeNameHistroy>

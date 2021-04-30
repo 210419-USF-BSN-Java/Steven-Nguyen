@@ -1,0 +1,17 @@
+package com.AMT.dao;
+
+import java.util.List;
+
+import com.villiansftw.exception.accountException;
+import com.villiansftw.exception.businessException;
+import com.villiansftw.exception.itemException;
+import com.villiansftw.model.Customer;
+import com.villiansftw.model.Item;
+
+public interface customerDAO extends GenericDao<Customer>{
+	
+	public void createCustomer(Customer newCustomer) throws accountException;
+	public Customer logincheck(String username) throws businessException;
+	public List<Item> viewItems() throws itemException;
+	
+}

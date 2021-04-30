@@ -1,0 +1,47 @@
+package com.villiansftw.service.impl;
+
+import java.util.List;
+
+import com.AMT.dao.customerDAO;
+import com.AMT.dao.impl.customerDAOImpl;
+import com.AMT.exception.accountException;
+import com.AMT.exception.businessException;
+import com.AMT.exception.itemException;
+import com.AMT.model.Customer;
+import com.AMT.model.Item;
+import com.AMT.service.customerService;
+
+public class customerImpl implements customerService{
+	
+	customerDAO customerdao = new customerDAOImpl();
+	
+	public void createCustomer(Customer Customer) throws accountException{
+	customerdao.createCustomer(Customer);
+		
+	}
+
+	@Override
+	public boolean logincheck(String username, String password) throws businessException{
+		if(customerdao.logincheck(username).getUserName()==null) {
+			return false;
+		}
+		if(customerdao.logincheck(username).getUserName().equals(username) 
+				&& customerdao.logincheck(username).getPassW().equals(password) ) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public List<Item> viewItems() throws itemException {
+		
+		return customerdao.viewItems();
+	}
+
+	@Override
+	public void addOffer(double offer) throws businessException {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

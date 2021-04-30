@@ -1,0 +1,56 @@
+package com.AMT.model;
+
+public class Offer {
+	private int offerId;
+	private Customer customer;
+	private Item item;
+	private double customerOffer;
+	
+	public Offer(int offerId, Customer customer, Item item, double customerOffer) {
+		super();
+		this.offerId = offerId;
+		this.customer = customer;
+		this.item = item;
+		this.customerOffer = customerOffer;
+	}
+
+	public int getOfferId() {
+		return offerId;
+	}
+
+	public void setOfferId(int offerId) {
+		this.offerId = offerId;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+	public double getCustomerOffer() {
+		return customerOffer;
+	}
+
+	public void setCustomerOffer(double customerOffer) {
+		this.customerOffer = customerOffer;
+	}
+
+	@Override
+	public String toString() {
+		return "Offer [offerId=" + offerId + ", customer=" + customer + ", item=" + item + ", customerOffer="
+				+ customerOffer + "]";
+	}
+	
+
+}

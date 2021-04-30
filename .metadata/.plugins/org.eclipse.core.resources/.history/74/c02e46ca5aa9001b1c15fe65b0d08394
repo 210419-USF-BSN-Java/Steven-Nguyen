@@ -1,0 +1,88 @@
+package com.AMT.model;
+
+public class Offer {
+	private int offerId;
+	private Item item;
+	private double customerOffer;
+	private String accepted;
+	
+	
+	public Offer() {
+		super();
+	}
+
+
+	public Offer(int offerId, Item item, double customerOffer) {
+		super();
+		this.offerId = offerId;
+		this.item = item;
+		this.customerOffer = customerOffer;
+	}
+
+
+	
+
+	public Offer(int offerId, Item item, double customerOffer, String Accepted) {
+		super();
+		this.offerId = offerId;
+		this.item = item;
+		this.customerOffer = customerOffer;
+		this.Accepted = Accepted;
+	}
+
+
+	public Offer(Item item, double customerOffer) {
+		super();
+		this.item = item;
+		this.customerOffer = customerOffer;
+	}
+
+
+	public int getOfferId() {
+		return offerId;
+	}
+
+
+	public void setOfferId(int offerId) {
+		this.offerId = offerId;
+	}
+
+
+	public Item getItem() {
+		return item;
+	}
+
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+
+	public double getCustomerOffer() {
+		return customerOffer;
+	}
+
+
+	public void setCustomerOffer(double customerOffer) {
+		this.customerOffer = customerOffer;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Offer: " + "item=" + item + " customerOffer=" + customerOffer + Accepted;
+	}
+
+
+
+	public String getAccepted() {
+		return Accepted;
+	}
+
+
+	public void setAccepted(String accepted) {
+		Accepted = accepted;
+	}
+
+
+}

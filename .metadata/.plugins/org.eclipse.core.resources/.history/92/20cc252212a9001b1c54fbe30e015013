@@ -1,0 +1,17 @@
+package com.AMT.dao;
+
+import com.villiansftw.exception.accountException;
+import com.villiansftw.exception.businessException;
+import com.villiansftw.exception.itemException;
+import com.villiansftw.model.Employee;
+import com.villiansftw.model.Item;
+
+public interface employeeDAO extends GenericDao<Employee>{
+public String retrieveDbUsername(String username) throws businessException;
+public String retrieveDbPassword(String password) throws businessException;
+public void addItem(Item newItem) throws itemException;
+public String deleteItemByName(String itemName) throws itemException;
+public Employee logincheck(String username) throws accountException;
+
+
+}
