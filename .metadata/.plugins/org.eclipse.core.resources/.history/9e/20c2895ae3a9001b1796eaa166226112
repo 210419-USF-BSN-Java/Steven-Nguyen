@@ -1,0 +1,6 @@
+package com.AMT.util;
+
+public interface factoryLogger {
+	private log4j;
+
+}

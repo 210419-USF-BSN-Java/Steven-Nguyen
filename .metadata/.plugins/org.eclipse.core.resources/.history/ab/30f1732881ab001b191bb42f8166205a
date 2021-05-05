@@ -1,0 +1,15 @@
+package com.AMT.util;
+
+public class singletonLogger {
+
+	private singletonLogger() {
+	}
+
+	private static class singletonRetrieve {
+		private static final singletonLogger logging = new singletonLogger();
+	}
+
+	public static singletonLogger getInstance() {
+		return singletonRetrieve.logging;
+	}
+}

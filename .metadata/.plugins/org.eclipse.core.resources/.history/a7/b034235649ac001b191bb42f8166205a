@@ -1,0 +1,33 @@
+package com.AMT.util;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import com.AMT.exception.accountException;
+
+public class ValidationsTest {
+
+	@Test
+	public void test() {
+		//username validation test
+		String username = "steven12345632423423423342342342";
+
+		try {
+			assertEquals("Username size has to be bigger than 3 and smaller than 15",Validations.usernameValidations(username));
+		} catch (accountException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
+	
+	}
+	@Test public void isPasswordValid() {
+		String password = "";
+		try {
+			assertEquals("Password can't be empty", Validations.passwordValidations(password));
+		}catch(accountException e) {
+			e.getMessage();
+		}
+	}
+
+}

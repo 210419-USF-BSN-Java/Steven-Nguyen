@@ -1,0 +1,16 @@
+package com.AMT.util;
+
+import org.apache.log4j.Logger;
+
+import com.AMT.main.Main;
+
+public class SingleLogger {
+	
+private static Logger log;
+
+public static synchronized Logger getLogger() {
+	log = Logger.getRootLogger(Main.class);
+	return log;
+	
+}
+}

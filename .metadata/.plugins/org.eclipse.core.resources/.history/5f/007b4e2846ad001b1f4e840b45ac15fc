@@ -1,0 +1,36 @@
+package com.AMT.util;
+
+import java.io.File;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
+public class music_sound {
+
+	static music_sound sound = new music_sound();
+
+	static Clip clip;
+
+	private music_sound() {
+
+	}
+
+	public static music_sound getInstance() {
+		return sound;
+	}
+	
+	public static void loadMusic(String filepath) {
+		try {
+			File musicPath = new File(filepath);
+			if(musicPath.exists()) {
+				AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+				clip = AudioSystem.getClip();
+				clip.open(audioInput);
+				System.out.println("Initilised");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

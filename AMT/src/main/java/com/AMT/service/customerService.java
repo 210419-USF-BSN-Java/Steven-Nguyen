@@ -7,6 +7,7 @@ import com.AMT.exception.businessException;
 import com.AMT.exception.itemException;
 import com.AMT.model.Customer;
 import com.AMT.model.Item;
+import com.AMT.model.Payment;
 
 public interface customerService {
 	
@@ -15,7 +16,10 @@ public Boolean logincheck(String username, String password) throws businessExcep
 public List<Item> viewItems() throws itemException;
 public void addOffer(double cOffer, int id, int merchid) throws businessException;
 public Customer getId(String username) throws businessException;
-//view owned items
-
+public void fullPayment(int customerid) throws businessException;
+public double retrieveCost(int customerid) throws businessException;
+public void addWeeklyPayment(int customerid, double weekly) throws businessException;
+public Payment paymentInformation(Customer id) throws businessException;
+public List<String> viewOwnedItems(int id) throws businessException;
 
 }

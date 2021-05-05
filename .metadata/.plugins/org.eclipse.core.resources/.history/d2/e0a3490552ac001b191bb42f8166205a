@@ -1,0 +1,23 @@
+package com.AMT.service.impl;
+
+import static org.junit.Assert.*;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.AMT.service.customerService;
+
+public class customerImplTest {
+	
+	private static customerService cs;
+	
+	@BeforeClass
+	public static void setup() {
+		cs = new customerImpl();
+	}
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

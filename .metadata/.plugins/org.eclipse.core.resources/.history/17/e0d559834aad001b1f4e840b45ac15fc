@@ -1,0 +1,620 @@
+package com.AMT.main;
+
+import java.io.File;
+import java.util.List;
+
+import com.AMT.exception.accountException;
+import com.AMT.exception.businessException;
+import com.AMT.exception.itemException;
+import com.AMT.model.Customer;
+import com.AMT.model.Employee;
+import com.AMT.model.Item;
+import com.AMT.model.Offer;
+import com.AMT.model.Payment;
+import com.AMT.service.customerService;
+import com.AMT.service.employeeService;
+import com.AMT.service.impl.customerImpl;
+import com.AMT.service.impl.employeeImpl;
+import com.AMT.util.PlaySound;
+import com.AMT.util.SingleLogger;
+import com.AMT.util.SingleScanner;
+import com.AMT.util.Validations;
+import com.AMT.util.managerMenu;
+
+import com.AMT.util.passwordHashing;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		customerService customerservice = new customerImpl();
+		employeeService employeeservice = new employeeImpl();
+		
+		System.out.println("Honored Guests!");
+		System.out.println("THIS IS ANOTHER MAN'S TREASURE");
+	
+		Thread soundThread = PlaySound.playSound(new File("C:\\Users\\Steven\\Desktop\\dreamy.wav"));
+		
+		int option = 0;
+		do {
+			System.out.println("Main Menu");
+			System.out.println("1) Employee Login");
+			System.out.println("2) Customer Login");
+			System.out.println("3) Create New Account");
+			System.out.println("4) Turn Music Off");
+			System.out.println("5) Exit Application");
+			try {
+				System.out.println("Enter an option between 1-4");
+				option = Integer.parseInt(SingleScanner.getScanner().nextLine());
+				switch (option) {
+				case 1:
+					String empUsername;
+					String empPw;
+					int empChoice = 0;
+
+					System.out.println("Enter employee username");
+					empUsername = SingleScanner.getScanner().nextLine();
+					System.out.println("Enter employee password");
+					empPw = SingleScanner.getScanner().nextLine();
+
+					try {
+						if (employeeservice.managerCheck(empUsername) == true
+								&& employeeservice.logincheck(empUsername, empPw)) {
+							managerMenu.fileMenu(); // manager menu through txt file
+							do {
+								try {
+									System.out.println("Enter an option between 1-9:");
+									empChoice = Integer.parseInt(SingleScanner.getScanner().nextLine());
+
+									switch (empChoice) {
+									case 1:
+										System.out.println("Enter customer's first name");
+										String customerFirstName = SingleScanner.getScanner().nextLine();
+										System.out.println("Enter customer's last name");
+										String customerPw = SingleScanner.getScanner().nextLine();
+										System.out.println("Enter customer's desired username");
+										String customerUsername = SingleScanner.getScanner().nextLine();
+										System.out.println("Enter customer's desired password");
+										// password hashing below
+										String customerPassword = passwordHashing
+												.doHashing(SingleScanner.getScanner().nextLine());
+
+										Customer newCustomer = new Customer(customerFirstName, customerPw,
+												customerUsername, customerPassword);
+
+										try {
+											customerservice.createCustomer(newCustomer);
+											System.out.println("New account created successfully");
+										} catch (accountException e) {
+											System.out.println("Unable to create account.. please try again");
+											e.printStackTrace();
+										}
+										break;
+									case 2:
+										System.out.println("Enter name of item");
+										String merchName = SingleScanner.getScanner().nextLine();
+										System.out.println("Enter price of item");
+										double merchPrice = Double.parseDouble(SingleScanner.getScanner().nextLine());
+										Item newItem = new Item(merchName, merchPrice);
+
+										try {
+											employeeservice.addItem(newItem);
+											System.out.println("Item sucessfully entered");
+										} catch (itemException e) {
+											System.out.println("cant add item");
+										}
+
+										break;
+									case 3:
+										System.out.println("List of current merchandise:");
+										try {
+											List<Item> listOfItems = customerservice.viewItems();
+
+											for (Item view : listOfItems) {
+												System.out.println(view.toString());
+											}
+										} catch (itemException e) {
+											System.out.println("Unable to list merchandise");
+											e.printStackTrace();
+										}
+										System.out
+												.println("Enter the name of the merchandise you would like to remove \n"
+														+ "Or enter exit to return to the employee menu");
+
+										String removedItem = SingleScanner.getScanner().nextLine();
+
+										if (removedItem.matches("[xX]") || removedItem.equals("Exit")
+												|| removedItem.equals("exit") || removedItem.equals("EXIT")) {
+											break;
+										} else {
+											try {
+												employeeservice.removeItemByName(removedItem);
+												System.out.println(
+														"The merchandise " + removedItem + " successfully removed");
+											} catch (itemException e) {
+												e.getMessage();
+												SingleLogger.getLogger().info(e.getStackTrace());
+											} catch (NullPointerException e) {
+												System.out.println("Exiiting to Employee Menu");
+											} finally {
+												System.out.println("Exiting to Employee Menu");
+											}
+
+										}
+										break;
+									case 4:
+
+										System.out.println("List of Offers");
+										try {
+											List<Offer> listOfOffers = employeeservice.viewOffers();
+											for (Offer view : listOfOffers) {
+												System.out.println(view.toString());
+
+											}
+										} catch (itemException e) {
+											System.out.println("Cant produce list of offers");
+											e.printStackTrace();
+										}
+
+										System.out.println("Would you like to approve some offers? Y/N");
+										String ynOffers = "";
+										ynOffers = SingleScanner.getScanner().nextLine();
+
+										int oid = 0;
+										if (Validations.approve(ynOffers) == true) {
+											System.out.println("Enter offer id: ");
+											// mid = Integer.parseInt(sc.nextLine());
+											oid = Integer.parseInt(SingleScanner.getScanner().nextLine());
+											try {
+												int dbOfferId = employeeservice.retrieveOfferById(oid).getOfferId();
+												int dbMerchId = employeeservice.retrieveOfferById(oid).getItem()
+														.getItemId();
+												int dbCustomerId = employeeservice.retrieveOfferById(oid).getCustomer()
+														.getCustomerid();
+												double dbCustomerOffer = employeeservice.retrieveOfferById(oid)
+														.getCustomerOffer();
+												if (employeeservice.acceptOffer(dbMerchId, dbOfferId) == 2) {
+													System.out.println("Offer accepted and updated");
+												} // change item status
+													// and deletes offer
+												employeeservice.updateMerchStatus(dbMerchId); // change merch status
+												Customer customer = new Customer(dbCustomerId);
+												Item item = new Item(dbMerchId);
+												Offer offer = new Offer(dbOfferId);
+												Payment bill = new Payment(customer, item, offer, dbCustomerOffer);
+												employeeservice.registerPayment(bill);
+
+											} catch (businessException e) {
+
+												SingleLogger.getLogger().info("Something went wrong on BigBertha");
+											}
+
+										}
+										if (Validations.approve(ynOffers) == false) {
+											System.out.println("Would you like to reject offers? Y/N");
+											String rejectOffers = SingleScanner.getScanner().nextLine();
+											if (Validations.approve(rejectOffers) == true) {
+												System.out.println("Enter offer id: ");
+												oid = Integer.parseInt(SingleScanner.getScanner().nextLine());
+												try {
+													employeeservice.rejectOffer(oid);
+												} catch (businessException e) {
+													SingleLogger.getLogger()
+															.info(e.getStackTrace() + " approving offer error");
+												}
+											} else {
+												System.out.println("Exiting to Employee Menu");
+											}
+
+										} else {
+											System.out.println("Exiting to Employee Menu");
+										}
+										break;
+
+									case 5:
+										System.out.println("Here is the list of payments:");
+										try {
+
+											for (Payment view : employeeservice.allPayments()) {
+												System.out.println(view.toString());
+
+											}
+										} catch (businessException e) {
+
+											e.getMessage();
+											SingleLogger.getLogger().info("Providing list of payments failed");
+										}
+										break;
+									case 6:
+										System.out.println("List of Employees: \n");
+										try {
+											for (Employee emp : employeeservice.listEmployee()) {
+												System.out.println(emp.toString() + "\n");
+											}
+
+										} catch (businessException e) {
+											SingleLogger.getLogger().info("Retrieving Employee List error");
+											e.printStackTrace();
+										}
+										int x = 0;
+										do {
+											System.out.println("Enter Employee Id number to *Fire*\n");
+											x = Integer.parseInt(SingleScanner.getScanner().nextLine());
+											employeeservice.fireEmployee(x);
+											Thread soundSlip = PlaySound.playSound(new File("C:\\Users\\Steven\\Desktop\\slip.wav"));
+
+										} while (x != 0);
+										break;
+									case 7:
+										System.out.println("under construction");
+										break;
+									case 8:
+										System.out.println("under construction");
+										break;
+									case 9:
+										System.out.println("Exiting to Main menu");
+										break;
+									}
+								} catch (NumberFormatException e) {
+									System.out.println("Please enter numbers between 1-9");
+								}
+							} while (empChoice != 9);
+
+						}
+						if (employeeservice.logincheck(empUsername, empPw)) {
+
+							do {
+								System.out.println("1) Create Customer Account");
+								System.out.println("2) Add Items");
+								System.out.println("3) Remove Items");
+								System.out.println("4) View/Accept Offers");
+								System.out.println("5) View All Payments");
+								System.out.println("6) Exit to Main Menu");
+								try {
+									System.out.println("Enter an option between 1-6:");
+									empChoice = Integer.parseInt(SingleScanner.getScanner().nextLine());
+
+									switch (empChoice) {
+									case 1:
+										System.out.println("Enter customer's first name");
+										String customerFirstName = SingleScanner.getScanner().nextLine();
+										System.out.println("Enter customer's last name");
+										String customerPw = SingleScanner.getScanner().nextLine();
+										System.out.println("Enter customer's desired username");
+										String customerUsername = SingleScanner.getScanner().nextLine();
+										System.out.println("Enter customer's desired password");
+										// password hashing below
+										String customerPassword = passwordHashing
+												.doHashing(SingleScanner.getScanner().nextLine());
+
+										Customer newCustomer = new Customer(customerFirstName, customerPw,
+												customerUsername, customerPassword);
+
+										try {
+											customerservice.createCustomer(newCustomer);
+											System.out.println("New account created successfully");
+										} catch (accountException e) {
+											System.out.println("Unable to create account.. please try again");
+											e.printStackTrace();
+										}
+										break;
+									case 2:
+										System.out.println("Enter name of item");
+										String merchName = SingleScanner.getScanner().nextLine();
+										System.out.println("Enter price of item");
+										double merchPrice = Double.parseDouble(SingleScanner.getScanner().nextLine());
+										Item newItem = new Item(merchName, merchPrice);
+
+										try {
+											employeeservice.addItem(newItem);
+											System.out.println("Item sucessfully entered");
+										} catch (itemException e) {
+											System.out.println("cant add item");
+										}
+
+										break;
+									case 3:
+										System.out.println("List of current merchandise:");
+										try {
+											List<Item> listOfItems = customerservice.viewItems();
+
+											for (Item view : listOfItems) {
+												System.out.println(view.toString());
+											}
+										} catch (itemException e) {
+											System.out.println("Unable to list merchandise");
+											e.printStackTrace();
+										}
+										System.out
+												.println("Enter the name of the merchandise you would like to remove \n"
+														+ "Or enter exit to return to the employee menu");
+
+										String removedItem = SingleScanner.getScanner().nextLine();
+
+										if (removedItem.matches("[xX]") || removedItem.equals("Exit")
+												|| removedItem.equals("exit") || removedItem.equals("EXIT")) {
+											break;
+										} else {
+											try {
+												employeeservice.removeItemByName(removedItem);
+												System.out.println(
+														"The merchandise " + removedItem + " successfully removed");
+											} catch (itemException e) {
+												e.getMessage();
+												SingleLogger.getLogger().info(e.getStackTrace());
+											} catch (NullPointerException e) {
+												System.out.println("Exiiting to Employee Menu");
+											} finally {
+												System.out.println("Exiting to Employee Menu");
+											}
+
+										}
+										break;
+									case 4:
+
+										System.out.println("List of Offers");
+										try {
+											List<Offer> listOfOffers = employeeservice.viewOffers();
+											for (Offer view : listOfOffers) {
+												System.out.println(view.toString());
+
+											}
+										} catch (itemException e) {
+											System.out.println("Cant produce list of offers");
+											e.printStackTrace();
+										}
+
+										System.out.println("Would you like to approve some offers? Y/N");
+										String ynOffers = "";
+										ynOffers = SingleScanner.getScanner().nextLine();
+
+										int oid = 0;
+										if (Validations.approve(ynOffers) == true) {
+											System.out.println("Enter offer id: ");
+											// mid = Integer.parseInt(sc.nextLine());
+											oid = Integer.parseInt(SingleScanner.getScanner().nextLine());
+											try {
+												int dbOfferId = employeeservice.retrieveOfferById(oid).getOfferId();
+												int dbMerchId = employeeservice.retrieveOfferById(oid).getItem()
+														.getItemId();
+												int dbCustomerId = employeeservice.retrieveOfferById(oid).getCustomer()
+														.getCustomerid();
+												double dbCustomerOffer = employeeservice.retrieveOfferById(oid)
+														.getCustomerOffer();
+												if (employeeservice.acceptOffer(dbMerchId, dbOfferId) == 2) {
+													System.out.println("Offer accepted and updated");
+												} // change item status
+													// and deletes offer
+												employeeservice.updateMerchStatus(dbMerchId); // change merch status
+												Customer customer = new Customer(dbCustomerId);
+												Item item = new Item(dbMerchId);
+												Offer offer = new Offer(dbOfferId);
+												Payment bill = new Payment(customer, item, offer, dbCustomerOffer);
+												employeeservice.registerPayment(bill);
+
+											} catch (businessException e) {
+
+												SingleLogger.getLogger().info("Something went wrong on BigBertha");
+											}
+
+										}
+										if (Validations.approve(ynOffers) == false) {
+											System.out.println("Would you like to reject offers? Y/N");
+											String rejectOffers = SingleScanner.getScanner().nextLine();
+											if (Validations.approve(rejectOffers) == true) {
+												System.out.println("Enter offer id: ");
+												oid = Integer.parseInt(SingleScanner.getScanner().nextLine());
+												try {
+													employeeservice.rejectOffer(oid);
+												} catch (businessException e) {
+													SingleLogger.getLogger()
+															.info(e.getStackTrace() + " approving offer error");
+												}
+											} else {
+												System.out.println("Exiting to Employee Menu");
+											}
+
+										} else {
+											System.out.println("Exiting to Employee Menu");
+										}
+										break;
+
+									case 5:
+										System.out.println("Here is the list of payments:");
+										try {
+
+											for (Payment view : employeeservice.allPayments()) {
+												System.out.println(view.toString());
+
+											}
+										} catch (businessException e) {
+
+											e.printStackTrace();
+										}
+										break;
+									}
+
+								} catch (NumberFormatException e) {
+									System.out.println("Please enter numbers between 1-6");
+								}
+							} while (empChoice != 6);
+
+						}
+					} catch (accountException e) {
+						System.out.println(e.getMessage());
+						SingleLogger.getLogger().info("Employee Login error");
+					}
+					break;
+				case 2: // Customer login
+					String customerUsername;
+					String customerPw;
+					int customerChoice = 0;
+					System.out.println("Enter username");
+					customerUsername = SingleScanner.getScanner().nextLine();
+					System.out.println("Enter password");
+					customerPw = SingleScanner.getScanner().nextLine();
+
+					try {
+
+						if (customerservice.logincheck(customerUsername, customerPw) || customerservice
+								.logincheck(customerUsername, passwordHashing.doHashing(customerPw))) {
+							do {
+								customerservice.getId(customerUsername);
+								// creating payment object to retrieve a bunch of data from db to use for later
+								Payment paymentInformation = new Payment();
+								paymentInformation = customerservice
+										.paymentInformation(customerservice.getId(customerUsername));
+								// List<Payment> test = new ArrayList<Payment>();
+								// test.add(paymentInformation);
+								// for(Payment view : test) {
+								// System.out.println(view.toString());
+								// Testing to see if the retrieve payment information worked}
+								System.out.println("1)View Items");
+								System.out.println("2)View Owned Items");
+								System.out.println("3)View Payments");
+								System.out.println("4)Exit to main menu");
+								try {
+									System.out.println("Pick an option between 1-4");
+									customerChoice = Integer.parseInt(SingleScanner.getScanner().nextLine());
+
+									switch (customerChoice) {
+									case 1:
+										System.out.println("Here is a list of items that are currently on sale");
+										try {
+											List<Item> listOfItems = customerservice.viewItems();
+
+											for (Item view : listOfItems) {
+												System.out.println(view.toString());
+											}
+										} catch (itemException e) {
+											System.out.println("Cant view list of items for some reason");
+											e.printStackTrace();
+										}
+										System.out.println("Would you like to make an offer? Y/N?");
+										String offerchoice = SingleScanner.getScanner().nextLine();
+
+										if (offerchoice.matches("[yY]")) {
+											System.out.println("Enter Merchandise ID: ");
+											int merchChoice = Integer.parseInt(SingleScanner.getScanner().nextLine());
+											System.out.println("Name your price: ");
+											double offeredPrice = Double
+													.parseDouble(SingleScanner.getScanner().nextLine());
+											int id = customerservice.getId(customerUsername).getCustomerid();
+											System.out.println(id);
+											customerservice.addOffer(offeredPrice, id, merchChoice);
+										} else {
+											System.out.println("Returning to Customer Menu");
+											break;
+										}
+
+										break;
+
+									case 2:
+										int id = customerservice.getId(customerUsername).getCustomerid();
+										if (paymentInformation.getRemaning() != 0
+												&& paymentInformation.getWeekly() == 0) {
+											System.out.println("Congratulations your offer for"
+													+ paymentInformation.getItem().getItemName() + ""
+													+ "has been approved");
+											System.out.println("Here are your payment options for "
+													+ paymentInformation.getItem().getItemName() + " = "
+													+ paymentInformation.getRemaning());
+											System.out.println("1) Pay Full Price");
+											System.out.println("2) Opt for Weekly Payments");
+											int choice = Integer.parseInt(SingleScanner.getScanner().nextLine());
+											try {
+												switch (choice) {
+												case 1:
+													System.out.println("Thank you for your purchase");
+													customerservice.fullPayment(id);
+													// add full payment to table
+													// fix remaining payment to 0
+													// update weekly payment to 0
+													break;
+
+												case 2:
+													// method to calculate weekly payments and add weekly to dao
+													double weekly_payments = customerservice.retrieveCost(id) / 72;
+													customerservice.addWeeklyPayment(id, weekly_payments);
+													System.out.println("Your weekly payments are: " + weekly_payments);
+													break;
+												default:
+													System.out.println("Not a valid option");
+													break;
+												}
+											}
+
+											catch (NumberFormatException e) {
+												System.out.println("Please input a number between 1 and 2");
+											}
+										} else {
+											System.out.println("Here are the list of items you own: ");
+											List<String> owned = customerservice.viewOwnedItems(
+													customerservice.getId(customerUsername).getCustomerid());
+											for (String view : owned) {
+												System.out.println(view.toString());
+											}
+											;
+										}
+										break;
+
+									case 3:
+
+										String item = paymentInformation.getItem().getItemName();
+
+										Double remaining = paymentInformation.getRemaning();
+
+										System.out.println("Remaining payments for " + item + " is $" + remaining);
+
+										break;
+
+									case 4:
+										System.out.println("Exiting to main menu");
+									}
+								} catch (NumberFormatException e) {
+									System.out.println("Please enter a number");
+								}
+							} while (customerChoice != 4);
+						}
+					} catch (businessException e) {
+						System.out.println(e.getMessage());
+						SingleLogger.getLogger().info(e.getStackTrace());
+					}
+
+					break;
+				case 3:
+					System.out.println("Create account");
+					System.out.println("Enter First Name");
+					String firstName = SingleScanner.getScanner().nextLine();
+					System.out.println("Enter Last Name");
+					String lastName = SingleScanner.getScanner().nextLine();
+					System.out.println("Enter new Username");
+					String userName = SingleScanner.getScanner().nextLine();
+					System.out.println("Enter new Password");
+					String pw = passwordHashing.doHashing(SingleScanner.getScanner().nextLine());
+					Customer newCustomer = new Customer(firstName, lastName, userName, pw);
+
+					try {
+						customerservice.createCustomer(newCustomer);
+						System.out.println("New Account Successfully Created");
+					} catch (accountException e) {
+						System.out.println(e.getMessage());
+						SingleLogger.getLogger().info(e.getMessage());
+					}
+					break;
+				case 4:
+					soundThread = PlaySound.playSound(new File("C:\\Users\\Steven\\Desktop\\slip.wav"));
+					break;
+				case 5:
+					System.out.println("Thanks for using the app");
+					break;
+				}
+
+			} catch (NumberFormatException e) {
+				System.out.println("Incorrect option.. Please enter an option betwen 1-4");
+			}
+		} while (option != 5);
+		
+	}
+
+}

@@ -1,0 +1,24 @@
+package com.AMT.util;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import com.AMT.exception.accountException;
+
+public class ValidationsTest {
+
+	@Test
+	public void test() {
+		//username validation test
+		String username = "steven12344124321";
+
+		try {
+			assertEquals("username cannot contain more than 3 numbers",Validations.usernameValidations(username));
+		} catch (accountException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
+	}
+
+}

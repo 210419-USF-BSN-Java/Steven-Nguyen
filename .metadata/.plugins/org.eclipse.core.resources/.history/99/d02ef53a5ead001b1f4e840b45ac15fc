@@ -1,0 +1,67 @@
+package com.AMT.service.impl;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.AMT.exception.businessException;
+import com.AMT.exception.itemException;
+import com.AMT.model.Customer;
+
+import com.AMT.service.customerService;
+import com.AMT.util.SingleLogger;
+import com.AMT.util.passwordHashing;
+
+public class customerImplTest {
+
+	private static customerService cs;
+
+	@BeforeClass
+	public static void setup() {
+		cs = new customerImpl();
+
+	}
+
+	@Before
+	public void SetUp() throws Exception{
+		Customer customer = new Customer("steven","nguyen","harryn","1235678",1);
+	}
+
+	@Test
+	public void isvalidloginTest() {
+		String username = "harryn";
+		String password = passwordHashing.doHashing("harryn");
+		try {
+			assertEquals(true, cs.logincheck(username, password));
+		} catch (businessException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+			SingleLogger.getLogger().info(e.getMessage());
+		}
+	}
+
+	@Test
+	public void isvalidlistitemTest() {
+		try {
+			assertEquals("No items currently on sale", cs.viewItems());
+		} catch (itemException e) {
+			SingleLogger.getLogger().info(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void isgetidvalidTest() {
+		String username = "harryn";
+
+		try {
+			assertEquals(, cs.getId(username).getCustomerid());
+		} catch (businessException e) {
+			SingleLogger.getLogger().info(e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
+}

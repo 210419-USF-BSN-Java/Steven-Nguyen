@@ -1,0 +1,21 @@
+package com.AMT.util;
+
+public class Logger {
+
+	private static Logger log;
+
+	private Logger() {
+	}
+
+	public static Logger getLogger() {
+		if (log == null) {
+			log = new Logger();
+		}
+		return log;
+	}
+
+	public static void loggerMethod() {
+		Logger warning = Logger.getLogger();
+	}
+
+}

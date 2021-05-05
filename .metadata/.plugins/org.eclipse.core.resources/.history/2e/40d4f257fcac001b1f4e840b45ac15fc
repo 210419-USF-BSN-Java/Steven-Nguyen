@@ -1,0 +1,31 @@
+package com.AMT.service.impl;
+
+import static org.junit.Assert.*;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.AMT.exception.accountException;
+import com.AMT.service.employeeService;
+
+public class employeeImplTest {
+private static employeeService es;
+	
+	@BeforeClass
+	public static void setup() {
+		es = new employeeImpl();
+	}
+
+	@Test
+	public void test() {
+		String username = "employee1";
+		String pw = "password";
+		try {
+			assertEquals("Password is incorrct",es.logincheck(username,pw));
+		} catch (accountException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

@@ -1,0 +1,36 @@
+package com.AMT.service.impl;
+
+
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.AMT.exception.businessException;
+import com.AMT.service.customerService;
+import com.AMT.util.SingleLogger;
+
+public class customerImplTest {
+	
+	private static customerService cs;
+	
+	@BeforeClass
+	public static void setup() {
+		cs = new customerImpl();
+	}
+
+	@Test
+	public void isvalidlogin() {
+		String username = "steven";
+		String password = "12345";
+		try {
+			assertEquals(false,cs.logincheck(username, password));
+		} catch (businessException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+			SingleLogger.getLogger().info(e.getMessage());;
+		}
+	}
+	
+}

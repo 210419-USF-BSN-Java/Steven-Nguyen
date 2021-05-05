@@ -1,0 +1,14 @@
+package com.AMT.service.impl;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class employeeImplTest {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

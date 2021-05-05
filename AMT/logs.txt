@@ -1,0 +1,146 @@
+2021-05-02 04:12:36 INFO com.AMT.main.Main - Unable to login
+2021-05-02 04:12:41 INFO com.AMT.main.Main - Unable to login
+2021-05-02 15:21:21 INFO com.AMT.service.impl.customerImpl - login successful
+2021-05-02 17:26:07 INFO com.AMT.main.Main - Unable to login
+2021-05-02 17:26:10 INFO com.AMT.main.Main - Unable to login
+2021-05-02 17:30:47 INFO com.AMT.main.Main - not singleton
+2021-05-02 17:30:47 INFO root - Unable to login
+2021-05-03 20:50:27 INFO root - Username size has to be bigger than 3 and smaller than 15
+2021-05-03 20:50:50 INFO root - username cannot contain only numbers
+2021-05-03 20:51:22 INFO root - Password is too long or too short
+2021-05-03 21:02:33 INFO root - login successful
+2021-05-03 21:03:54 INFO root - login successful
+2021-05-03 21:07:14 INFO root - login successful
+2021-05-03 21:07:30 INFO root - login successful
+2021-05-03 21:07:41 INFO root - login successful
+2021-05-03 21:14:37 INFO root - login successful
+2021-05-03 21:19:39 INFO root - login successful
+2021-05-03 21:24:27 INFO root - login successful
+2021-05-03 21:24:43 INFO root - login successful
+2021-05-03 21:27:22 INFO root - login successful
+2021-05-03 21:32:33 INFO root - login successful
+2021-05-03 22:07:25 INFO root - login successful
+2021-05-03 22:07:39 INFO root - Employee Login error
+2021-05-03 22:07:47 INFO root - login successful
+2021-05-03 22:07:47 INFO root - login successful
+2021-05-03 22:11:06 INFO root - login successful
+2021-05-03 22:11:06 INFO root - login successful
+2021-05-03 22:16:14 INFO root - login successful
+2021-05-03 22:16:14 INFO root - login successful
+2021-05-03 22:27:30 INFO root - login successful
+2021-05-03 22:27:30 INFO root - login successful
+2021-05-03 22:28:47 INFO root - Employee Login error
+2021-05-03 22:28:53 INFO root - login successful
+2021-05-03 22:28:53 INFO root - login successful
+2021-05-03 22:30:18 INFO root - login successful
+2021-05-03 22:30:18 INFO root - login successful
+2021-05-04 12:22:15 INFO root - login successful
+2021-05-04 12:35:02 INFO root - Employee Login error
+2021-05-04 12:45:15 INFO root - Employee Login error
+2021-05-04 12:46:23 INFO root - Employee Login error
+2021-05-04 12:50:58 INFO root - login successful
+2021-05-04 12:51:04 INFO root - login successful
+2021-05-04 12:51:09 INFO root - login successful
+2021-05-04 12:51:32 INFO root - login successful
+2021-05-04 17:35:56 INFO root - login successful
+2021-05-04 17:36:48 INFO root - login successful
+2021-05-04 17:37:50 INFO root - login successful
+2021-05-04 17:38:22 INFO root - login successful
+2021-05-04 17:38:37 INFO root - login successful
+2021-05-04 17:39:10 INFO root - login successful
+2021-05-04 17:39:11 INFO root - login successful
+2021-05-04 17:39:48 INFO root - login successful
+2021-05-04 17:46:48 INFO root - login successful
+2021-05-04 17:46:56 INFO root - login successful
+2021-05-04 17:47:53 INFO root - login successful
+2021-05-04 17:48:53 INFO root - login successful
+2021-05-04 18:05:09 INFO root - login successful
+2021-05-04 18:05:21 INFO root - login successful
+2021-05-04 18:41:12 INFO root - login successful
+2021-05-04 18:41:41 INFO root - login successful
+2021-05-04 18:43:28 INFO root - login successful
+2021-05-04 18:46:07 INFO root - login successful
+2021-05-04 19:15:25 INFO root - login successful
+2021-05-04 21:06:05 INFO root - [Ljava.lang.StackTraceElement;@75592a85
+2021-05-04 21:06:06 INFO root - [Ljava.lang.StackTraceElement;@12925ecc
+2021-05-04 21:06:06 INFO root - [Ljava.lang.StackTraceElement;@5403ddce
+2021-05-04 21:06:06 INFO root - [Ljava.lang.StackTraceElement;@7fb1ee8a
+2021-05-04 21:06:07 INFO root - [Ljava.lang.StackTraceElement;@57995421
+2021-05-04 21:14:58 INFO root - Employee Login error
+2021-05-04 21:15:05 INFO root - login successful
+2021-05-04 21:15:27 INFO root - Employee Login error
+2021-05-04 22:17:05 INFO root - login successful
+2021-05-04 22:18:29 INFO root - login successful
+2021-05-04 22:20:10 INFO root - [Ljava.lang.StackTraceElement;@37afeb11
+2021-05-04 22:20:16 INFO root - login successful
+2021-05-04 22:20:31 INFO root - Password is too long or too short
+2021-05-04 22:21:52 INFO root - Employee Login error
+2021-05-04 22:22:11 INFO root - login successful
+2021-05-04 22:22:18 INFO root - Password is too long or too short
+2021-05-04 22:29:46 INFO root - login successful
+2021-05-04 22:29:57 INFO root - Password is too long or too short
+2021-05-04 22:30:15 INFO root - Password is too long or too short
+2021-05-04 22:31:51 INFO root - login successful
+2021-05-04 22:32:03 INFO root - Password is too long or too short
+2021-05-04 22:32:59 INFO root - login successful
+2021-05-04 22:33:12 INFO root - Username or Password enter is invalid
+2021-05-04 22:35:19 INFO root - [Ljava.lang.StackTraceElement;@72d1ad2e
+2021-05-04 22:35:33 INFO root - login successful
+2021-05-04 22:36:39 INFO root - login successful
+2021-05-04 22:36:50 INFO root - ERROR: duplicate key value violates unique constraint "customer_un"
+  Detail: Key (username, password)=(jerryterry, d41fccecb0fa94c194b759c950eb040d) already exists.
+2021-05-04 22:40:26 INFO root - login successful
+2021-05-04 22:40:35 INFO root - ERROR: duplicate key value violates unique constraint "customer_un"
+  Detail: Key (username, password)=(jerryterry, d41fccecb0fa94c194b759c950eb040d) already exists.
+2021-05-04 22:41:48 INFO root - price can not be lowered than 0
+2021-05-04 22:44:59 INFO root - login successful
+2021-05-04 22:45:12 INFO root - price can not be lowered than 0
+2021-05-04 22:48:34 INFO root - [Ljava.lang.StackTraceElement;@595b007d
+2021-05-04 22:48:39 INFO root - login successful
+2021-05-04 22:49:55 INFO root - login successful
+2021-05-04 22:53:55 INFO root - Something went wrong on BigBertha
+2021-05-04 22:53:55 INFO root - Merch Id or offer Id is incorrect, please try again
+2021-05-04 22:56:35 INFO root - login successful
+2021-05-04 23:04:34 INFO root - login successful
+2021-05-04 23:07:21 INFO root - login successful
+2021-05-04 23:13:15 INFO root - login successful
+2021-05-04 23:14:19 INFO root - login successful
+2021-05-04 23:23:37 INFO root - login successful
+2021-05-04 23:24:31 INFO root - login successful
+2021-05-04 23:24:51 INFO root - login successful
+2021-05-04 23:33:02 INFO root - login successful
+2021-05-04 23:33:25 INFO root - login successful
+2021-05-04 23:33:49 INFO root - login successful
+2021-05-04 23:34:35 INFO root - login successful
+2021-05-04 23:37:24 INFO root - login successful
+2021-05-04 23:40:48 INFO root - login successful
+2021-05-04 23:41:58 INFO root - login successful
+2021-05-04 23:42:33 INFO root - login successful
+2021-05-04 23:56:21 INFO root - login successful
+2021-05-05 00:18:16 INFO root - login successful
+2021-05-05 01:50:30 INFO root - login successful
+2021-05-05 01:51:54 INFO root - login successful
+2021-05-05 01:54:02 INFO root - login successful
+2021-05-05 01:55:01 INFO root - login successful
+2021-05-05 02:12:25 INFO root - login successful
+2021-05-05 02:14:39 INFO root - login successful
+2021-05-05 02:14:42 INFO root - Employee id does not exist
+2021-05-05 02:14:56 INFO root - login successful
+2021-05-05 02:15:34 INFO root - Employee id does not exist
+2021-05-05 02:19:01 INFO root - login successful
+2021-05-05 02:19:09 INFO root - Employee id does not exist
+2021-05-05 02:20:11 INFO root - login successful
+2021-05-05 02:20:53 INFO root - login successful
+2021-05-05 02:21:22 INFO root - login successful
+2021-05-05 02:22:16 INFO root - login successful
+2021-05-05 02:22:30 INFO root - Employee id does not exist
+2021-05-05 02:24:44 INFO root - Username or password enter is invalid
+2021-05-05 02:24:51 INFO root - login successful
+2021-05-05 02:24:57 INFO root - Employee id does not exist
+2021-05-05 02:28:01 INFO root - login successful
+2021-05-05 02:28:06 INFO root - Exiting to Employee Menu
+2021-05-05 02:28:42 INFO root - login successful
+2021-05-05 02:30:42 INFO root - login successful
+2021-05-05 02:30:45 INFO root - Exiting to Employee Menu
+2021-05-05 02:33:35 INFO root - login successful
+2021-05-05 02:33:46 INFO root - Exiting to Employee Menu

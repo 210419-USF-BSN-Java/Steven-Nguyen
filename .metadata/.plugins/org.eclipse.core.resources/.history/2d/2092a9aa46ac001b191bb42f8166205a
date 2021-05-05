@@ -1,0 +1,17 @@
+package com.AMT.util;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class ValidationsTest {
+
+	@Test
+	public void test() {
+		//username validation test
+		String username = "12312312";
+
+		assertEquals(false,Validations.usernameValidations(username));
+	}
+
+}

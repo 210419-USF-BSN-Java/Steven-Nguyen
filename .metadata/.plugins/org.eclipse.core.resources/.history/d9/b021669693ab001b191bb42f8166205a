@@ -1,0 +1,33 @@
+package com.AMT.util;
+
+import org.apache.log4j.Logger;
+
+public class SingletonLogger {
+
+private static SingletonLogger createlogger;
+private static Logger log;
+
+private SingletonLogger() {}
+// this is to prevent people from creating the constructor
+
+
+
+private static SingletonLogger getInstance(){
+	if(createlogger == null) {
+		createlogger = new SingletonLogger();
+	}
+	return createlogger;
+}
+
+
+
+public static Logger getLog() {
+	return log;
+}
+
+
+
+public static void setLog(Logger log) {
+	SingletonLogger.log = log;
+}
+}

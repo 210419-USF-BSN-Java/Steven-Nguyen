@@ -1,0 +1,16 @@
+package com.AMT.util;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+public class ValidationsTest {
+
+	@Test
+	public void usernameValidationstest(String username) {
+		username = "yo";
+		if(username.length() <= 3) {
+			assertTrue(true);
+		}
+	}
+
+}

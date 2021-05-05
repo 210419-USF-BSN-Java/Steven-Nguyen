@@ -1,0 +1,15 @@
+package com.AMT.util;
+
+public class yesno {
+
+	public boolean approve(String answer) {
+		if (answer.matches("[yY]") || answer.equals("Yes") || answer.equals("yes") || answer.equals("YES")) {
+			return true;
+		}
+		if (answer.matches("[nN]") || answer.equals("No") || answer.equals("no") || answer.equals("NO")) {
+			return false;
+		}else {
+			return false;
+		}
+	}
+}

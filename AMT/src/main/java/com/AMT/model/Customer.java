@@ -27,10 +27,15 @@ public class Customer {
 	}
 	
 	
+	public Customer(String userName) {
+		super();
+		this.userName = userName;
+	}
 	public Customer(int customerid) {
 		super();
 		this.customerid = customerid;
 	}
+	
 	public Customer(String firstName, String lastName, int customerid) {
 		super();
 		this.firstName = firstName;

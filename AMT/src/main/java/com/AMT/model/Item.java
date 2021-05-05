@@ -19,6 +19,12 @@ public Item(String itemName, double itemPrice) {
 
 
 
+public Item(int itemId) {
+	super();
+	this.itemId = itemId;
+}
+
+
 public Item(int itemId, String itemName, double itemPrice) {
 	super();
 	this.itemId = itemId;

@@ -13,6 +13,12 @@ public class Offer {
 	}
 
 
+	public Offer(int offerId) {
+		super();
+		this.offerId = offerId;
+	}
+
+
 	public Offer(int offerId, Item item, double customerOffer, String accepted, Customer customer) {
 		super();
 		this.offerId = offerId;
@@ -54,6 +60,22 @@ public class Offer {
 		super();
 		this.item = item;
 		this.customerOffer = customerOffer;
+	}
+
+
+	public Offer(int offerId, Item item) {
+		super();
+		this.offerId = offerId;
+		this.item = item;
+	}
+
+
+	public Offer(int offerId, Item item, double customerOffer, Customer customer) {
+		super();
+		this.offerId = offerId;
+		this.item = item;
+		this.customerOffer = customerOffer;
+		this.customer = customer;
 	}
 
 
