@@ -12773,3 +12773,18 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-05-05 08:41:13.780
 !MESSAGE executing callback sts4.classpath.IsacoVTd SUCCESS [done]
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-05-05 09:00:52.800
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.IsacoVTd
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-05-05 09:00:52.801
+!MESSAGE unsubscribing from classpath changes: sts4.classpath.IsacoVTd
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-05-05 09:00:52.802
+!MESSAGE subsribers = {}
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2021-05-05 09:00:52.802
+!MESSAGE ClasspathListenerHandler removeClasspathListener sts4.classpath.IsacoVTd => OK
+
+!ENTRY org.eclipse.ui 2 2 2021-05-05 09:00:53.453
+!MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)
