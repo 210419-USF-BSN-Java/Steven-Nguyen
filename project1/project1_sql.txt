@@ -1,0 +1,125 @@
+create schema ers;
+
+create table ERS_User_Roles(
+ERS_User_Role_ID serial primary key,
+User_Role varchar(10));
+
+create table ERS_Reimbursement_status(
+REIMB_Status_ID serial primary key,
+REIM_Status varchar(10));
+
+create table ERS_Reimbursement_Type(
+REIMB_Type_ID serial primary key,
+REIMB_Type varchar(10));
+
+create table ERS_Users(
+ERS_Users_ID serial primary key,
+ERS_Username varchar(50) unique not null,
+ERS_Password varchar(50) not null,
+User_First_Name varchar(100) not null,
+User_Last_Name varchar(100) not null,
+User_Email varchar(150) unique not null,
+ERS_User_Role_ID int4,
+constraint fk_customer
+foreign key (ERS_User_Role_ID)
+references ERS_User_Roles(ERS_User_Role_ID));
+
+create table ERS_Reimbursement(
+REIMB_ID serial primary key,
+REIMB_Amount double precision not null,
+REIMB_Submitted timestamp,
+REIMB_Resolved timestamp,
+REIMB_Description varchar(250),
+REIMB_Receipt bytea,
+REIMB_Author int4,
+REIMB_Resolver int4,
+REIMB_Status_Id int4,
+REIMB_Type_ID int4,
+constraint ERS_REIMBURSEMENT_STATUS_FK
+foreign key (REIMB_STATUS_ID)
+references ERS_REIMBURSEMENT_STATUS(REIMB_STATUS_ID),
+constraint ERS_REIMBURSEMENT_TYPE_FK
+foreign key (REIMB_TYPE_ID)
+references ERS_REIMBURSEMENT_TYPE(REIMB_TYPE_ID),
+constraint ERS_REIMBURSEMENT_AUTHOR_FK
+foreign key (REIMB_Author)
+references ERS_USERS(ERS_USERS_ID),
+constraint ERS_REIMBURSEMENT_RESOLVER_FK
+foreign key (REIMB_Resolver)
+references ERS_USERS(ERS_USERS_ID));
+
+
+insert into ers_user_roles (user_role) values ('employee');
+insert into ers_user_roles (user_role) values ('manager');
+
+insert into ers_reimbursement (reimb_amount) values (500);
+
+set timezone ='America/Chicago';
+select now(); -- get current time, date/time
+select current_timestamp;
+select current_time; -- only time
+
+insert into ers_users(ers_username,ers_password, user_first_name, user_last_name, user_email, ers_user_role_id)
+values ('stevien','1234','steven','nguyen', 'email', 1);
+insert into ers_users(ers_username,ers_password, user_first_name, user_last_name, user_email, ers_user_role_id)
+values ('Megaman','megax','Mega','Man', 'Megaemail', 1);
+insert into ers_users(ers_username,ers_password, user_first_name, user_last_name, user_email, ers_user_role_id)
+values ('Kingdom','Hearts','Sora','Kun', 'Soraemail', 1);
+insert into ers_users(ers_username,ers_password, user_first_name, user_last_name, user_email, ers_user_role_id)
+values ('Final','FantasyX','Tidus','Dead', 'Tidusemail', 1);
+
+Select * from ers.ers_users join ers.ers_user_roles on ers.ers_users.ers_user_role_id = ers.ers_user_roles.ers_user_role_id where ers_username = 'stevien';
+
+insert into ers_reimbursement_type(reimb_type) values ('travel');
+insert into ers_reimbursement_status(reim_status) values ('Pending');
+insert into ers_reimbursement(reimb_amount,reimb_description,reimb_author,reimb_status_id,reimb_type_id) values(500,'I went to paris', 1 , 1 , 1);
+
+select ers.ers_reimbursement.reimb_id , ers.ers_reimbursement.reimb_amount, ers.ers_reimbursement.reimb_submitted, ers.ers_reimbursement.reimb_description, ers.ers_reimbursement_type.reimb_type
+from ers.ers_reimbursement join ers.ers_reimbursement_type on ers.ers_reimbursement.reimb_type_id = ers.ers_reimbursement_type.reimb_type_id
+join ers.ers_reimbursement_status on ers.ers_reimbursement.reimb_status_id = ers.ers_reimbursement_status.reimb_status_id 
+where ers.ers_reimbursement.reimb_author = 1 and ers.ers_reimbursement_status.reim_status = 'Pending';
+
+insert into ers_reimbursement_type(reimb_type) values ('Lodging');
+insert into ers_reimbursement_status(reim_status) values ('Pending');
+insert into ers_reimbursement(reimb_amount,reimb_description,reimb_author,reimb_status_id,reimb_type_id) values(500,'Chama is expensive', 1 , 5, 5);
+
+insert into ers_reimbursement_type(reimb_type) values ('Travel');
+insert into ers_reimbursement_status(reim_status) values ('Resolved');
+insert into ers_reimbursement(reimb_amount,reimb_description,reimb_author,reimb_status_id,reimb_type_id) values(1000,'Dallas Trip', 1 , 4, 4);
+
+select ers.ers_reimbursement.reimb_id , ers.ers_reimbursement.reimb_amount, ers.ers_reimbursement.reimb_submitted, ers.ers_reimbursement.reimb_description, ers.ers_reimbursement_type.reimb_type
+from ers.ers_reimbursement join ers.ers_reimbursement_type on ers.ers_reimbursement.reimb_type_id = ers.ers_reimbursement_type.reimb_type_id
+join ers.ers_reimbursement_status on ers.ers_reimbursement.reimb_status_id = ers.ers_reimbursement_status.reimb_status_id 
+where ers.ers_reimbursement.reimb_author = 1 and ers.ers_reimbursement_status.reim_status = 'Resolved';
+
+ALTER SEQUENCE ers_reimbursement_type_reimb_type_id_seq RESTART WITH 9;
+ALTER SEQUENCE ers_reimbursement_status_reimb_status_id_seq RESTART WITH 9;
+ALTER SEQUENCE ers_reimbursement_reimb_id_seq RESTART WITH 9;
+
+
+select ers.ers_reimbursement.reimb_id , ers.ers_reimbursement.reimb_amount, ers.ers_reimbursement.reimb_submitted, ers.ers_reimbursement.reimb_resolved,
+ers.ers_users.user_first_name, ers.ers_reimbursement.reimb_description, ers.ers_reimbursement_type.reimb_type
+from ers.ers_reimbursement join ers.ers_reimbursement_type on ers.ers_reimbursement.reimb_type_id = ers.ers_reimbursement_type.reimb_type_id
+join ers.ers_reimbursement_status on ers.ers_reimbursement.reimb_status_id = ers.ers_reimbursement_status.reimb_status_id
+join ers.ers_users on ers.ers_reimbursement.reimb_resolver = ers.ers_users.ers_users_id 
+where ers.ers_reimbursement_status.reim_status = 'Resolved';
+
+insert into ers_users(ers_username, ers_password, user_first_name, user_last_name, user_email, ers_users_id)
+values ('mangager1','manager1pw','Liquid','Snake','kill.snake.com', 2);
+
+insert into ers_users(ers_username, ers_password, user_first_name, user_last_name, user_email, ers_user_role_id)
+values ('mangager2','manager2pw','Omega','Sigma','blahblah', 2);
+
+UPDATE ers.ers_reimbursement
+SET reimb_resolved= now()
+WHERE reimb_id=3;
+
+select ers_users_id, user_first_name, user_last_name from ers_users where ers_user_role_id = 1;
+
+select * from ers.ers_reimbursement where reimb_author = 1;
+
+select ers.ers_reimbursement.reimb_id, ers.ers_reimbursement.reimb_amount, ers.ers_reimbursement.reimb_description, ers.ers_users.ers_users_id,
+ers.ers_users.user_first_name, ers.ers_users.user_last_name, ers.ers_reimbursement_status.reim_status from ers.ers_reimbursement
+join ers.ers_users on ers.ers_reimbursement.reimb_author = ers.ers_users.ers_users_id 
+join ers.ers_reimbursement_status on ers.ers_reimbursement.reimb_status_id = ers.ers_reimbursement_status.reimb_status_id 
+where ers.ers_reimbursement.reimb_author = 1 and ers.ers_reimbursement_status.reim_status ='Pending';
