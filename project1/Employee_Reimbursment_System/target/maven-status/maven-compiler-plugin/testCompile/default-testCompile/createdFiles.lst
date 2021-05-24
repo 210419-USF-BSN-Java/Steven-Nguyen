@@ -1,0 +1,4 @@
+DAO\Manager_DAO_DefinedTest.class
+Service\Manager_Service_DefinedTest.class
+DAO\Employee_DAO_DefinedTest.class
+Service\Employee_Service_DefinedTest.class

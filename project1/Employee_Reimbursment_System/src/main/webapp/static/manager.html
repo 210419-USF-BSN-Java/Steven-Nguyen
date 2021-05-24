@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lux/bootstrap.min.css" integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
+    <title>BloodSuckers</title>
+</head>
+<body>
+    <nav>
+        <a class="logIn" href="/ERS/index.html">Log Out</a>
+        <a href = "/ERS/static/manager.html">ERS</a>
+    </nav>
+    
+    <div>
+        <h1>ERS Manager HomePage</h1>
+    </div>
+    <p>Please view the options below</p>
+
+
+    <form >
+    <button type="button" id="PR">
+        <a href='viewPending.html'>View All Pending Requests</a></button>
+    </form>
+
+    <br/>
+
+    <form action="../manager/resolved" method="GET">
+    <button type="button" id="RR">View Resolved Requests</button>
+    </form>
+
+    <br/>
+    <form action="../manager/employees" method="GET">
+    <button type="button" id="Employees">View List of Employees</button>
+    </form>
+
+    <br/>
+    <form >
+    <button type="button"><a href='employeeId.html'>View Employee by Id</a></button>
+    </form>
+
+    <p id = "fromjs">
+
+    </p>
+    <script src="manager.js"></script>
+</body>
+</html>

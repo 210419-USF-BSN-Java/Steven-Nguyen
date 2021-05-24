@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lux/bootstrap.min.css" integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOSEY</title>
+</head>
+<body>
+    <nav>
+        <a class="logIn" href="/ERS/index.html">Log Out</a>
+        <a href = "/ERS/static/manager.html">ERS</a>
+    </nav>
+    <h1>View Reimbursement by Employee ID</h1>
+    <form action="../manager/info" method="POST">
+        
+       <div class="Id">
+        <label for="eId">Employee Id</label>
+        <input type="number" name="eId">
+      </div>
+      <button type="submit" id="submitId">submit</button>
+     
+        
+    </form>
+<p id = "fromjs">
+
+</p>
+<script src="employeeId.js"></script>
+</body>
+</html>

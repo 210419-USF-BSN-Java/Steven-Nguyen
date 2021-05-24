@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lux/bootstrap.min.css" integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
+    
+    <title>BUTT ON</title>
+</head>
+<body>
+    <nav>
+        <a class="logIn" href="/ERS/index.html">Log Out</a>
+        <a href = "/ERS/static/employee.html">ERS</a>
+    </nav>
+    <h1>Reimbursement Form</h1>
+    <form action="../employee/reimbrequest" method="POST">
+        <div class ="reimbursement">
+            <label for="typeOfEvent">Reimbursement Type:</label>
+            <select name="typeOfEvent">
+                <option value = "Food">Food</option>
+                <option value = "Travel">Travel</option>
+                <option value = "Lodging">Lodging</option>
+                <option value = "Other">Other</option>
+            </select>
+        </div>
+        <div class="reimbursement">
+            <label for="cost">Reimbursement Cost</label>
+           <input type = "number" name="cost">
+       </div>
+       <div class="item">
+        <label for="description">Description</label>
+        <textarea name="description"></textarea>
+      </div>
+
+      <button type="submit" id="submitrequest">submit</button>
+        
+        
+    </form>
+
+   
+</body>
+</html>

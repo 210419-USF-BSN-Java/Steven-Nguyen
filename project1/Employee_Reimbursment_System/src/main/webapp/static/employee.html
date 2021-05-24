@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lux/bootstrap.min.css" integrity="sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beggers</title>
+    
+</head>
+<body>
+
+    <nav>
+        <a class="logIn" href="/ERS/index.html">Log Out</a>
+        <a href = "/ERS/static/employee.html">ERS</a>
+    </nav>
+    
+    
+    <h1>ERS Employee HomePage</h1>
+
+    <p>Please view the options below</p>
+  
+    <form action="../employee/pending" method="GET">
+        <button type="button" id="pending" >View Pending Reimbursements</button>
+    </form>
+    
+    <form action="../employee/resolved" method="GET">
+        <button type="button" id="resolved" >View Resolved Reimbursements</button>
+    </form>
+    <form action="../employee/info" method="GET">
+        <button type="button" id="info">View Information</button>
+    </form>
+    <button type="button"><a href='request.html'>Make Request</a></button>
+    <br/>
+   
+<p>
+    <div id = "fromjs">
+
+    </div>
+</p>
+
+<script src="employee.js"></script>
+</body>
+</html>
